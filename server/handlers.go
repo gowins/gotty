@@ -11,7 +11,7 @@ import (
 
 	"github.com/gorilla/websocket"
 	"github.com/pkg/errors"
-	"github.com/yudai/gotty/webtty"
+	"github.com/gowins/gotty/webtty"
 )
 
 func (server *Server) generateHandleWS(ctx context.Context, cancel context.CancelFunc, counter *counter) http.HandlerFunc {
