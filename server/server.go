@@ -122,17 +122,17 @@ func (server *Server) Run(ctx context.Context, options ...RunOption) error {
 		return errors.Wrapf(err, "failed to listen at `%s`", hostPort)
 	}
 
-	scheme := "http"
-	if server.options.EnableTLS {
-		scheme = "https"
-	}
-	host, port, _ := net.SplitHostPort(listener.Addr().String())
-	log.Printf("HTTP server is listening at: %s", scheme+"://"+host+":"+port+path)
-	if server.options.Address == "0.0.0.0" {
-		for _, address := range listAddresses() {
-			log.Printf("Alternative URL: %s", scheme+"://"+address+":"+port+path)
-		}
-	}
+	//scheme := "http"
+	//if server.options.EnableTLS {
+	//	scheme = "https"
+	//}
+	//host, port, _ := net.SplitHostPort(listener.Addr().String())
+	//log.Printf("HTTP server is listening at: %s", scheme+"://"+host+":"+port+path)
+	//if server.options.Address == "0.0.0.0" {
+	//	for _, address := range listAddresses() {
+	//		log.Printf("Alternative URL: %s", scheme+"://"+address+":"+port+path)
+	//	}
+	//}
 
 	srvErr := make(chan error, 1)
 	go func() {

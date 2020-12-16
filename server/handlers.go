@@ -5,14 +5,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"net/url"
 	"sync/atomic"
 
 	"github.com/gorilla/websocket"
 	"github.com/pkg/errors"
-
 	"github.com/yudai/gotty/webtty"
 )
 
@@ -38,13 +36,14 @@ func (server *Server) generateHandleWS(ctx context.Context, cancel context.Cance
 
 		num := counter.add(1)
 		closeReason := "unknown reason"
+		_ = closeReason
 
 		defer func() {
-			num := counter.done()
-			log.Printf(
-				"Connection closed by %s: %s, connections: %d/%d",
-				closeReason, r.RemoteAddr, num, server.options.MaxConnection,
-			)
+			//num := counter.done()
+			//log.Printf(
+			//	"Connection closed by %s: %s, connections: %d/%d",
+			//	closeReason, r.RemoteAddr, num, server.options.MaxConnection,
+			//)
 
 			if server.options.Once {
 				cancel()
@@ -58,7 +57,7 @@ func (server *Server) generateHandleWS(ctx context.Context, cancel context.Cance
 			}
 		}
 
-		log.Printf("New client connected: %s, connections: %d/%d", r.RemoteAddr, num, server.options.MaxConnection)
+		//log.Printf("New client connected: %s, connections: %d/%d", r.RemoteAddr, num, server.options.MaxConnection)
 
 		if r.Method != "GET" {
 			http.Error(w, "Method not allowed", 405)
